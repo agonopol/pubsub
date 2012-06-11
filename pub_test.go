@@ -6,7 +6,7 @@ import (
 	_"time"
 )
 
-func TestTwoProducers(t *testing.T) {
+func YUNOTestTwoProducers(t *testing.T) {
 	pub := Publisher()
 	pub.AddPublisher(func() chan interface{} {
 		out := make(chan interface{})

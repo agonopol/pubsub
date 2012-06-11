@@ -1,5 +1,9 @@
 package pubsub
 
+import (
+	"time"
+)
+
 type publisher struct {
 	pubs []func() chan interface{}
 	lock chan interface{}
@@ -24,6 +28,9 @@ func (this *publisher) Publish(sub chan interface{}) {
 	}
 	for _ = range this.pubs {
 		_ = <-this.lock
+	}
+	for len(sub) > 0 {
+		time.Sleep(time.Nanosecond)
 	}
 	close(sub)
 }
